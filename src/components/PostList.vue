@@ -1,88 +1,89 @@
 <template>
   <div>
-    <v-row>
+    <v-row class="ml-5 mr-5">
       <v-col cols="2">
         <v-select v-model="keyword" :items="keywords"></v-select>
       </v-col>
       <v-col col="10">
-        <v-text-field label="검색어를 입력하세요." append-icon="mdi-help-circle"></v-text-field>
+        <v-text-field color="black" label="검색어를 입력하세요." append-icon="mdi-help-box"></v-text-field>
       </v-col>
     </v-row>
-    <v-card>
+    <v-card class="mt-2 ml-5 mr-5">
       <v-list two-line>
         <v-list-item-group active-class="white--text" multiple>
-          <template v-for="(item, index) in items">
-            <v-list-item :to="{ path: '/board/' + item.title }" :key="item.title">
-              <template v-slot:default="{ active }">
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.title"></v-list-item-title>
+          <template v-for="(post, index) in posts">
+            <v-list-item :to="{ path: '/board/' + post.pno }" :key="post.title">
+              <v-list-item-content>
+                <v-list-item-title class="font-weight-bold" v-text="post.title"></v-list-item-title>
+                <v-row>
+                  <v-col class="text--secondary" v-text="post.user" cols="2"></v-col>
+                </v-row>
+              </v-list-item-content>
 
-                  <v-list-item-subtitle class="text--primary" v-text="item.headline"></v-list-item-subtitle>
-
-                  <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
-                </v-list-item-content>
-
-                <v-list-item-action>
-                  <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
-
-                  <v-icon v-if="!active" color="grey lighten-1">mdi-star-outline</v-icon>
-
-                  <v-icon v-else color="yellow darken-3">mdi-star</v-icon>
-                </v-list-item-action>
-              </template>
+              <v-list-item-action>
+                <v-list-item-action-text v-text="post.modifiedAt"></v-list-item-action-text>
+              </v-list-item-action>
             </v-list-item>
-
-            <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
+            <v-divider v-if="index < posts.length - 1" :key="index"></v-divider>
           </template>
         </v-list-item-group>
       </v-list>
     </v-card>
+
+    <v-row class="mt-2 ml-5 mr-5">
+      <v-col cols="2"></v-col>
+      <v-col cols="8">
+        <v-pagination @previous="prev" @next="next" v-model="page" :length="pageSize"></v-pagination>
+      </v-col>
+      <v-col cols="2"></v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 export default {
+  mounted() {
+    console.log('mount==>' + this.page);
+  },
+  methods: {
+    next() {
+      this.page = this.page + 9 < this.pageSize ? this.page + 9 : this.pageSize;
+    },
+    prev() {
+      this.page = this.page - 9 > 0 ? this.page - 9 : 1;
+    },
+  },
   data() {
     return {
+      page: 1,
+      pageSize: 200,
+
       keyword: '제목',
       keywords: ['제목', '본문', '작성자', '제목+본문+작성자'],
-      items: [
+      posts: [
         {
-          action: '15 min',
-          headline: 'Brunch this weekend?',
-          subtitle: `I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          title: 'Ali Connors',
+          pno: 1,
+          modifiedAt: '2021/06/21 17:00',
+          user: '강대혁',
+          title: '제목입니다__________________@',
         },
         {
-          action: '2 hr',
-          headline: 'Summer BBQ',
-          subtitle: `Wish I could come, but I'm out of town this weekend.`,
-          title: 'me, Scrott, Jennifer',
+          pno: 2,
+          modifiedAt: '2021/06/21 18:00',
+          user: '강대혁',
+          title: '제목입니다.__________________________________@',
         },
         {
-          action: '6 hr',
-          headline: 'Oui oui',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?',
-          title: 'Sandra Adams',
+          pno: 3,
+          modifiedAt: '2021/06/21 18:00',
+          user: '김정민',
+          title: '제목@__________@',
         },
         {
-          action: '12 hr',
-          headline: 'Birthday gift',
-          subtitle: 'Have any ideas about what we should get Heidi for her birthday?',
-          title: 'Trevor Hansen',
-        },
-        {
-          action: '18hr',
-          headline: 'Recipe to try',
-          subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-          title: 'Britta Holt',
-        },
-        {
-          action: '18hr',
-          headline: '작성자달기',
-          subtitle:
-            'So Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______GSo Long G_______G',
-          title: '제목~~~~~~~~~~~',
+          pno: 4,
+          modifiedAt: '2021/06/22 19:00',
+          user: '바보똥개',
+          title: 'F___TITLE________________OO',
         },
       ],
     };
