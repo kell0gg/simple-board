@@ -1,5 +1,5 @@
 <template>
-  <h1>POST LIST G__G</h1>
+  <h1>POST LIST G__G 내용~~</h1>
 </template>
 
 <script>
