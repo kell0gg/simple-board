@@ -33,7 +33,7 @@
     <v-row class="mt-2 ml-5 mr-5">
       <v-col cols="2"></v-col>
       <v-col cols="8">
-        <v-pagination @previous="prev" @next="next" v-model="page" :length="totalPage"></v-pagination>
+        <v-pagination v-model="page" :length="totalPage"></v-pagination>
       </v-col>
       <v-col cols="2"></v-col>
     </v-row>
@@ -70,12 +70,6 @@ export default {
   },
   methods: {
     ...mapActions(['fetchPostList', 'fetchTotalPage']),
-    next() {
-      this.page = this.page + 9 < this.totalPage ? this.page + 9 : this.totalPage;
-    },
-    prev() {
-      this.page = this.page - 9 > 0 ? this.page - 9 : 1;
-    },
   },
   data() {
     return {
