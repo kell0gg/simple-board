@@ -12,7 +12,7 @@
       <v-list two-line>
         <v-list-item-group active-class="white--text" multiple>
           <template v-for="(post, index) in posts">
-            <v-list-item :to="{ path: '/board/' + post.pno }" :key="post.title">
+            <v-list-item :to="{ path: '/board/' + post.pno }" :key="post.pno">
               <v-list-item-content>
                 <v-list-item-title class="font-weight-bold" v-text="post.title"></v-list-item-title>
                 <v-row>
@@ -33,7 +33,7 @@
     <v-row class="mt-2 ml-5 mr-5">
       <v-col cols="2"></v-col>
       <v-col cols="8">
-        <v-pagination @previous="prev" @next="next" v-model="page" :length="pageSize"></v-pagination>
+        <v-pagination @previous="prev" @next="next" v-model="page" :length="totalPage"></v-pagination>
       </v-col>
       <v-col cols="2"></v-col>
     </v-row>
@@ -41,13 +41,37 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
+  created() {
+    this.fetchPostList({
+      page: this.page,
+      size: this.size,
+    });
+    this.fetchTotalPage({
+      page: this.page,
+      size: this.size,
+    });
+  },
   mounted() {
     console.log('mount==>' + this.page);
   },
+  computed: {
+    ...mapState(['posts', 'totalPage']),
+  },
+  watch: {
+    page: function (newPage) {
+      this.fetchPostList({
+        page: newPage,
+        size: this.size,
+      });
+    },
+  },
   methods: {
+    ...mapActions(['fetchPostList', 'fetchTotalPage']),
     next() {
-      this.page = this.page + 9 < this.pageSize ? this.page + 9 : this.pageSize;
+      this.page = this.page + 9 < this.totalPage ? this.page + 9 : this.totalPage;
     },
     prev() {
       this.page = this.page - 9 > 0 ? this.page - 9 : 1;
@@ -56,36 +80,10 @@ export default {
   data() {
     return {
       page: 1,
-      pageSize: 200,
+      size: 5,
 
       keyword: '제목',
       keywords: ['제목', '본문', '작성자', '제목+본문+작성자'],
-      posts: [
-        {
-          pno: 1,
-          modifiedAt: '2021/06/21 17:00',
-          user: '강대혁',
-          title: '제목입니다__________________@',
-        },
-        {
-          pno: 2,
-          modifiedAt: '2021/06/21 18:00',
-          user: '강대혁',
-          title: '제목입니다.__________________________________@',
-        },
-        {
-          pno: 3,
-          modifiedAt: '2021/06/21 18:00',
-          user: '김정민',
-          title: '제목@__________@',
-        },
-        {
-          pno: 4,
-          modifiedAt: '2021/06/22 19:00',
-          user: '바보똥개',
-          title: 'F___TITLE________________OO',
-        },
-      ],
     };
   },
 };
