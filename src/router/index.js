@@ -10,9 +10,10 @@ const routes = [
     component: () => import('@/views/Main.vue'),
   },
   {
-    path: '/board',
+    path: '/board/:pageNum',
     name: 'BoardPage',
     component: () => import('@/views/BoardPage.vue'),
+    props: true,
   },
   {
     path: '/post/:postId',

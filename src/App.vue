@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer clipped-left temporary v-model="drawer" app class="cyan darken-3">
       <v-list>
-        <v-list-item :to="{ path: '/board' }">
+        <v-list-item :to="{ path: '/board/1' }">
           <v-list-item-action>
             <pencil-icon dark />
           </v-list-item-action>

@@ -58,6 +58,16 @@ export default {
     });
     this.fetchTotalPage();
   },
+  mounted() {
+    console.log('pageNum ==>' + this.pageNum);
+    this.page = parseInt(this.pageNum);
+  },
+  props: {
+    pageNum: {
+      type: String,
+      required: true,
+    },
+  },
   computed: {
     ...mapState(['posts', 'totalPage']),
   },

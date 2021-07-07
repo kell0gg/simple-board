@@ -22,6 +22,9 @@ export default {
   methods: {
     ...mapActions(['fetchPost']),
   },
+  mounted() {
+    console.log('postId ===>' + this.postId);
+  },
   created() {
     this.fetchPost(this.postId).catch((err) => {
       alert(err.response.data.msg);
