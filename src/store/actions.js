@@ -4,7 +4,6 @@ import { FETCH_TOTAL_PAGE, FETCH_POST_LIST, FETCH_POST } from './mutations-types
 export default {
   fetchTotalPage({ commit }) {
     return api.get('/posts/size').then((res) => {
-      // page가 0부터 시작함
       commit(FETCH_TOTAL_PAGE, res.data);
     });
   },
