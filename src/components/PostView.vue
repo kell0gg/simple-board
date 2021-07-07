@@ -18,6 +18,20 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="2">
+        <v-btn dark color="red">
+          <v-icon>mdi-pencil</v-icon>
+          삭제
+        </v-btn>
+      </v-col>
+      <v-col cols="2">
+        <v-btn dark color="green">
+          <v-icon>mdi-pencil</v-icon>
+          수정
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -32,26 +46,4 @@ export default {
 };
 </script>
 
-<style>
-.jb-xx-small {
-  font-size: xx-small;
-}
-.jb-x-small {
-  font-size: x-small;
-}
-.jb-small {
-  font-size: small;
-}
-.jb-medium {
-  font-size: medium;
-}
-.jb-large {
-  font-size: large;
-}
-.jb-x-large {
-  font-size: x-large;
-}
-.jb-xx-large {
-  font-size: xx-large;
-}
-</style>
+<style></style>

@@ -16,12 +16,12 @@
         <v-card>
           <v-list two-line>
             <v-list-item-group active-class="white--text" multiple>
-              <template v-for="post in posts">
+              <template v-for="(post, index) in posts">
                 <v-list-item :to="{ path: '/post/' + post.pno }" :key="post.pno">
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold" v-text="post.title"></v-list-item-title>
                     <v-row>
-                      <v-col class="text--secondary" v-text="post.user" cols="2"></v-col>
+                      <v-col class="text--secondary" v-text="post.writer" cols="2"></v-col>
                     </v-row>
                   </v-list-item-content>
 
@@ -29,7 +29,7 @@
                     <v-list-item-action-text v-text="post.modifiedAt"></v-list-item-action-text>
                   </v-list-item-action>
                 </v-list-item>
-                <!-- <v-divider v-if="index < posts.length - 1" :key="index"></v-divider> -->
+                <v-divider v-if="index < posts.length - 1" :key="index + 'post'"></v-divider>
               </template>
             </v-list-item-group>
           </v-list>
