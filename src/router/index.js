@@ -14,6 +14,12 @@ const routes = [
     name: 'BoardPage',
     component: () => import('@/views/BoardPage.vue'),
   },
+  {
+    path: '/post/:postId',
+    name: 'PostViewPage',
+    component: () => import('@/views/PostViewPage.vue'),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

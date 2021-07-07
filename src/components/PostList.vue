@@ -16,8 +16,8 @@
         <v-card>
           <v-list two-line>
             <v-list-item-group active-class="white--text" multiple>
-              <template v-for="(post, index) in posts">
-                <v-list-item :to="{ path: '/board/' + post.pno }" :key="post.pno">
+              <template v-for="post in posts">
+                <v-list-item :to="{ path: '/post/' + post.pno }" :key="post.pno">
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold" v-text="post.title"></v-list-item-title>
                     <v-row>
@@ -29,7 +29,7 @@
                     <v-list-item-action-text v-text="post.modifiedAt"></v-list-item-action-text>
                   </v-list-item-action>
                 </v-list-item>
-                <v-divider v-if="index < posts.length - 1" :key="index"></v-divider>
+                <!-- <v-divider v-if="index < posts.length - 1" :key="index"></v-divider> -->
               </template>
             </v-list-item-group>
           </v-list>
@@ -56,10 +56,7 @@ export default {
       page: this.page,
       size: this.size,
     });
-    this.fetchTotalPage({
-      page: this.page,
-      size: this.size,
-    });
+    this.fetchTotalPage();
   },
   computed: {
     ...mapState(['posts', 'totalPage']),
@@ -78,7 +75,7 @@ export default {
   data() {
     return {
       page: 1,
-      size: 5,
+      size: 10,
 
       keyword: '제목',
       keywords: ['제목', '본문', '작성자', '제목+본문+작성자'],
