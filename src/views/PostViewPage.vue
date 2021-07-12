@@ -28,7 +28,7 @@
 </template>
 
 <script>
-// import api from '@/api';
+import api from '@/api';
 
 import { mapState, mapActions } from 'vuex';
 
@@ -47,6 +47,16 @@ export default {
     ...mapActions(['fetchPost']),
     deletePost() {
       console.log('delete');
+      api
+        .delete(`/post/delete/${this.postId}`)
+        .then((res) => {
+          console.log(res);
+          this.$router.push({
+            name: 'BoardPage',
+            params: { pageNum: '1' },
+          });
+        })
+        .catch((err) => console.log(err));
     },
   },
   mounted() {
