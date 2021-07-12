@@ -2,7 +2,7 @@
   <div class="post-view-page">
     <post-view v-if="post" :post="post"></post-view>
     <p v-else>로 딩 중...</p>
-    <v-container>
+    <v-container fluid>
       <v-row>
         <v-col cols="2">
           <v-btn :to="{ path: '/board/1' }" dark color="blue">
@@ -65,7 +65,10 @@ export default {
   created() {
     this.fetchPost(this.postId).catch((err) => {
       alert(err.response.data.msg);
-      this.$router.back();
+      this.$router.push({
+        name: 'BoardPage',
+        params: { pageNum: '1' },
+      });
     });
   },
   computed: {

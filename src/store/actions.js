@@ -13,6 +13,8 @@ export default {
         params: {
           page: pageInfo.page,
           size: pageInfo.size,
+          keyword: pageInfo.searchKeyword,
+          type: pageInfo.type,
         },
       })
       .then((res) => {

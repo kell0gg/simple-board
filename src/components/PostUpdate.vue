@@ -4,7 +4,7 @@
       <v-row dense>
         <v-col cols="12">
           <v-card>
-            <v-container>
+            <v-container fluid>
               <v-text-field v-model="post.title" label="제목"></v-text-field>
               <v-text-field v-model="post.writer" label="작성자"></v-text-field>
             </v-container>
@@ -16,7 +16,7 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-btn @click="onSubmit" dark color="green">
+          <v-btn @keyup.enter="onSubmit" @click="onSubmit" dark color="green">
             <v-icon>mdi-pencil</v-icon>
             수정하기
           </v-btn>

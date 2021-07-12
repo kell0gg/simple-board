@@ -4,7 +4,7 @@
       <v-row dense>
         <v-col cols="12">
           <v-card>
-            <v-container>
+            <v-container fluid>
               <v-text-field :rules="inputRules" v-model="title" label="제목"></v-text-field>
               <v-text-field :rules="inputRules" v-model="writer" label="작성자"></v-text-field>
             </v-container>

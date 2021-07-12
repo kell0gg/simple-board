@@ -2,10 +2,17 @@
   <div class="ml-5 mr-5">
     <v-row>
       <v-col cols="2">
-        <v-select v-model="keyword" :items="keywords"></v-select>
+        <v-select name="keyword" v-model="keyword" item-text="value" :items="keywords" return-object></v-select>
       </v-col>
       <v-col cols="8">
-        <v-text-field color="black" label="검색어를 입력하세요." append-icon="mdi-help-box"></v-text-field>
+        <v-text-field
+          @click:append="searchPosts"
+          @keyup.enter="searchPosts"
+          color="black"
+          v-model="searchKeyword"
+          label="검색어를 입력하세요."
+          append-icon="mdi-help-box"
+        ></v-text-field>
       </v-col>
       <v-col class="mt-4" cols="2">
         <v-btn :to="{ path: '/post/create' }" primary>글쓰기</v-btn>
@@ -21,7 +28,7 @@
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold" v-text="post.title"></v-list-item-title>
                     <v-row>
-                      <v-col class="text--secondary" v-text="post.writer" cols="2"></v-col>
+                      <v-col class="text--secondary" v-text="post.writer" cols="6"></v-col>
                     </v-row>
                   </v-list-item-content>
 
@@ -81,14 +88,29 @@ export default {
   },
   methods: {
     ...mapActions(['fetchPostList', 'fetchTotalPage']),
+    searchPosts() {
+      console.log('hello');
+      this.fetchPostList({
+        page: this.page,
+        size: this.size,
+        searchKeyword: this.searchKeyword,
+        type: this.keyword.key,
+      });
+      console.log('hell__O');
+    },
   },
   data() {
     return {
       page: 1,
       size: 10,
 
-      keyword: '제목',
-      keywords: ['제목', '본문', '작성자', '제목+본문+작성자'],
+      keyword: { key: 'title', value: '제목' },
+      keywords: [
+        { key: 'title', value: '제목' },
+        { key: 'writer', value: '글쓴이' },
+        { key: 'content', value: '본문' },
+      ],
+      searchKeyword: '',
     };
   },
 };
