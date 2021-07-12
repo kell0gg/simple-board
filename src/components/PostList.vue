@@ -8,7 +8,7 @@
         <v-text-field color="black" label="검색어를 입력하세요." append-icon="mdi-help-box"></v-text-field>
       </v-col>
       <v-col class="mt-4" cols="2">
-        <v-btn primary>글쓰기</v-btn>
+        <v-btn :to="{ path: '/post/create' }" primary>글쓰기</v-btn>
       </v-col>
     </v-row>
     <v-row>

@@ -16,6 +16,17 @@ const routes = [
     props: true,
   },
   {
+    path: '/post/update/:postId',
+    name: 'PostUpdatePage',
+    component: () => import('@/views/PostUpdatePage.vue'),
+    props: true,
+  },
+  {
+    path: '/post/create',
+    name: 'PostCreatePage',
+    component: () => import('@/views/PostCreatePage.vue'),
+  },
+  {
     path: '/post/:postId',
     name: 'PostViewPage',
     component: () => import('@/views/PostViewPage.vue'),
