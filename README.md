@@ -1,25 +1,25 @@
-# simple-board
+# Simple board - CRUD with Search and Pagination
 
-## Project setup
-```
-npm install
-```
+## APIs
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+| 기능             | METHOD | Redirect URL        |
+| ---------------- | ------ | ------------------- |
+| 게시글 목록 조회 | GET    | /posts, /posts/size |
+| 게시글 등록      | POST   | /post/register      |
+| 게시글 수정      | PUT    | /post/update/{id}   |
+| 게시글 삭제      | DELETE | /post/delete/{id}   |
+| 게시글 조회      | GET    | /post/{id}          |
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Components
 
-### Lints and fixes files
-```
-npm run lint
-```
+- PostList.vue
+- PostCreate.vue
+- PostUpdate.vue
+- PostView.vue
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# simple-board
+## Page
+
+- BoardPage.vue
+- PostCreatePage.vue
+- PostUpdatePage.vue
+- PostViewPage.vue

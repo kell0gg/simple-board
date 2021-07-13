@@ -13,7 +13,7 @@ export default {
     onSubmit(postInfo) {
       console.log(postInfo.content);
       api
-        .post('/register', postInfo)
+        .post('/post/register', postInfo)
         .then((res) => {
           console.log(res);
           this.$router.push({

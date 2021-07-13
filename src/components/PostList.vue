@@ -45,11 +45,11 @@
     </v-row>
 
     <v-row class="mt-2 ml-5 mr-5">
-      <v-col cols="2"></v-col>
-      <v-col cols="8">
+      <v-col cols="3"></v-col>
+      <v-col cols="6">
         <v-pagination v-model="page" :length="totalPage"></v-pagination>
       </v-col>
-      <v-col cols="2"></v-col>
+      <v-col cols="3"></v-col>
     </v-row>
   </div>
 </template>
@@ -102,7 +102,7 @@ export default {
   data() {
     return {
       page: 1,
-      size: 10,
+      size: 5,
 
       keyword: { key: 'title', value: '제목' },
       keywords: [
